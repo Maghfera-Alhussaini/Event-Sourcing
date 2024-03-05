@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "Anis.TrainingProject";
+
+package invitations.commands.v1;
+
+service Invitations {
+
+  rpc SendInvitation   (SendInvitationRequest) returns (Response);
+  rpc CancelInvitation (CancelInvitationRequest) returns (Response);
+  rpc AcceptInvitation (AcceptInvitationRequest) returns (Response);
+  rpc RejectInvitation (RejectInvitationRequest) returns (Response);
+
+
+}
+message SendInvitationRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string user_id = 4;
+  PermissionType permission_type=5;
+
+}
+message CancelInvitationRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string user_id = 4;
+ 
+}
+message AcceptInvitationRequest {
+ string account_id=1;
+ string subscription_id=2;
+ string member_id=3;
+ string user_id=4;
+
+}
+message RejectInvitationRequest {
+ string account_id=1;
+ string subscription_id=2;
+ string member_id=3;
+ string user_id=4;
+}
+
+message Response {
+  string id = 1;
+  string message=2;
+}
+enum PermissionType {
+  TRANSFER = 0;
+  PURCHASE_CARDS = 1;
+  MANAGE_DEVICE = 2;
+}
