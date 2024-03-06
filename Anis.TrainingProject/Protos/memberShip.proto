@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "Anis.TrainingProject.Protos";
+
+package memberShip.commands.v1;
+
+service memberShip {
+
+  rpc JoinMember   (JoinMemberRequest) returns (Response);
+  rpc CancelInvitation (RemoveMemberRequest) returns (Response);
+  rpc AcceptInvitation (LeaveRequest) returns (Response);
+  rpc RejectInvitation (ChangePermissionRequest) returns (Response);
+
+
+}
+message JoinMemberRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+  PermissionType permission_type=6;
+}
+message RemoveMemberRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+
+}
+message LeaveRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+}
+message ChangePermissionRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+  PermissionType permission_type=6;
+}
+message Response{
+	string id=1;
+	string message=2;
+}
+enum PermissionType {
+  TRANSFER = 0;
+  PURCHASE_CARDS = 1;
+  MANAGE_DEVICE = 2;
+}

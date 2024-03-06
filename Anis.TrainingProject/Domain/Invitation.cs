@@ -29,7 +29,7 @@ namespace Anis.TrainingProject.Domain
      
         public void ApplyChanges(Event @event)
         {
-
+             Mutate(@event);
             _uncommittedEvents.Add(@event);
         }
       
@@ -116,6 +116,19 @@ namespace Anis.TrainingProject.Domain
                     throw new AlreadyExistsException("you've already rejected the invitation");
                 default:
                     return false;
+
+            }
+         }
+        protected void Mutate(Event @event)
+        {
+            switch(@event)
+            {
+                case InvitationSent invitationSent:
+                    IsPending= true;
+                    break;
+                default:
+                    IsPending = false;
+                    break;
 
             }
         }
