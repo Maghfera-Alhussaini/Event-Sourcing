@@ -12,7 +12,8 @@
        string AccountId,
        string SubscriptionId,
        string MemberId,
-       string UserId
+       string UserId,
+       PermissionType PermissionType
 
   );
 }

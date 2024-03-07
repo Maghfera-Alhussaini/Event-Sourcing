@@ -1,4 +1,3 @@
-
 using Anis.TrainingProject.Extentions;
 using Microsoft.EntityFrameworkCore;
 using Grpc.Core;
@@ -45,6 +44,52 @@ namespace Anis.TrainingProject.Services
 
         }
         public override async Task<Response> AcceptInvitation(AcceptInvitationRequest request, ServerCallContext context)
+        {
+            try
+            {
+                var command = request.ToCommand();
+                var response = await _policy.ExecuteAsync(() => _mediator.Send(command));
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw new RpcException(new Status(StatusCode.Internal, "An error occurred while processing the invitation."));
+            }
+
+        }
+        //JoinMember
+        public override async Task<Response> JoinMember(JoinMemberRequest request, ServerCallContext context)
+        {
+            try
+            {
+                var command = request.ToCommand();
+                var response = await _policy.ExecuteAsync(() => _mediator.Send(command));
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw new RpcException(new Status(StatusCode.Internal, "An error occurred while processing the invitation."));
+            }
+
+        }
+        public override async Task<Response> RemoveMember(RemoveMemberRequest request, ServerCallContext context)
+        {
+            try
+            {
+                var command = request.ToCommand();
+                var response = await _policy.ExecuteAsync(() => _mediator.Send(command));
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw new RpcException(new Status(StatusCode.Internal, "An error occurred while processing the invitation."));
+            }
+
+        }
+        public override async Task<Response> Leave(LeaveRequest request, ServerCallContext context)
         {
             try
             {

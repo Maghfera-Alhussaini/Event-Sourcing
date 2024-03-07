@@ -10,6 +10,11 @@ service Invitations {
   rpc CancelInvitation (CancelInvitationRequest) returns (Response);
   rpc AcceptInvitation (AcceptInvitationRequest) returns (Response);
   rpc RejectInvitation (RejectInvitationRequest) returns (Response);
+   rpc JoinMember  (JoinMemberRequest) returns (Response);
+  rpc RemoveMember (RemoveMemberRequest) returns (Response);
+  rpc Leave (LeaveRequest) returns (Response);
+  rpc ChangePermission (ChangePermissionRequest) returns (Response);
+
 
 
 }
@@ -33,6 +38,7 @@ message AcceptInvitationRequest {
  string subscription_id=2;
  string member_id=3;
  string user_id=4;
+ PermissionType  permission_type=5;
 
 }
 message RejectInvitationRequest {
@@ -40,6 +46,35 @@ message RejectInvitationRequest {
  string subscription_id=2;
  string member_id=3;
  string user_id=4;
+}
+message JoinMemberRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+  PermissionType permission_type=6;
+}
+message RemoveMemberRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+
+}
+message LeaveRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string user_id = 3;
+}
+message ChangePermissionRequest {
+  string account_id = 1;
+  string subscription_id = 2;
+  string member_id = 3;
+  string owner_id = 4;
+  string user_id = 5;
+  PermissionType permission_type=6;
 }
 
 message Response {

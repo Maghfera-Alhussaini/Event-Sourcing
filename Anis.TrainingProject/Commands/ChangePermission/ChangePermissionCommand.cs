@@ -1,14 +1,15 @@
 ﻿using MediatR;
-namespace Anis.TrainingProject.Commands.AcceptInvitation
+namespace Anis.TrainingProject.Commands.ChangePermission
 {
-    public class AcceptInvitationCommand: IRequest<Response>
+    public class ChangePermissionCommand: IRequest<Response>
     {
         public required string AccountId {  get; init; }
         public required string SubscriptionId {  get; init; }
         public required string MemberId {  get; init; }
+        public required string OwnerId {  get; init; }
         public required string UserId {  get; init; }
-        public PermissionType PermissionType { get; init; }
-      
+        public required PermissionType PermissionType { get; init; }
+
     }
    
 }
